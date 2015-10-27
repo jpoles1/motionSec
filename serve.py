@@ -1,6 +1,9 @@
 from flask import Flask, render_template
-
-from os import listdir
+import os
+#from os import listdir, chdir, path
+abspath = os.path.abspath(__file__)
+dname = os.path.dirname(abspath)
+os.chdir(dname)
 import re
 app = Flask(__name__)
 def isImg(filename):
@@ -16,9 +19,9 @@ def isImg(filename):
         return False;
 @app.route("/")
 def getImg():
-    imglist = listdir("static/caps/img/");
+    imglist = os.listdir("static/caps/img/");
     imglist = [filename for filename in imglist if isImg(filename)]
     print(imglist);
     return render_template("image.html", imglist=imglist);
 if __name__ == "__main__":
-    app.run(debug=True);
+    app.run(debug=True, host='0.0.0.0');
