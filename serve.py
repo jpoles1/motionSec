@@ -10,8 +10,19 @@ def isImg(filename):
     try:
         regexpr = ".+\.([a-z]{2,4})$"
         extension = re.search(regexpr, filename).group(1)
-        imglist = ["png", "jpg"]
-        if(extension in imglist):
+        imgextlist = ["png", "jpg"]
+        if(extension in imgextlist):
+            return True;
+        else:
+            return False;
+    except:
+        return False;
+def isVid(filename):
+    try:
+        regexpr = ".+\.([a-z]{2,4})$"
+        extension = re.search(regexpr, filename).group(1)
+        vidextlist = ["ogg"]
+        if(extension in vidextlist):
             return True;
         else:
             return False;
@@ -19,9 +30,11 @@ def isImg(filename):
         return False;
 @app.route("/")
 def getImg():
-    imglist = os.listdir("static/caps/img/");
-    imglist = [filename for filename in imglist if isImg(filename)]
-    print(imglist);
-    return render_template("image.html", imglist=imglist);
+    filelist = os.listdir("static/caps/");
+    print(filelist);
+    filelist = [{"filename": filename, "isimg": isImg(filename), "isvid": isVid(filename)} for filename in filelist if (isImg(filename) or isVid(filename))]
+    sorted(filelist)
+    print(filelist);
+    return render_template("imgvid.html", filelist=filelist);
 if __name__ == "__main__":
     app.run(debug=True, host='0.0.0.0');

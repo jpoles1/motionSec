@@ -1,0 +1,28 @@
+<html>
+<head>
+  <title>motionSec Viewer</title>
+  <link type="text/css" rel="stylesheet" href="static/css/lightgallery.min.css" />
+  <script type="text/javascript" src="static/js/jquery.min.js"></script>
+  <script type="text/javascript" src="static/js/lightgallery-all.min.js"></script>
+  <script type="text/javascript" src="static/js/main.js"></script>
+  <link href="//vjs.zencdn.net/4.12/video-js.min.css" rel="stylesheet">
+<script src="//vjs.zencdn.net/4.12/video.min.js"></script>
+</head>
+<body>
+  <h1>View 1</h1>
+  <div class="gallery">
+    {% for filedat in filelist %}
+        {% if filedat.isimg == True %}
+        <h3>{{filedat.filename}}</h3>
+        <a href="static/caps/{{filedat.filename}}">
+          <img src="static/caps/{{filedat.filename}}" width=360 height=204>
+        </a>
+        {% elif filedat.isvid == True %}
+        <video class="lg-video-object lg-html5 video-js vjs-default-skin" controls preload="none" width=360 height=204>
+            <source src="static/caps/{{filedat.filename}}" type="video/mp4">
+             Your browser does not support HTML5 video.
+        </video>
+        {% endif %}
+    {% endfor %}
+  </div>
+</body>
