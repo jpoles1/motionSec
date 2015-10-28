@@ -1,17 +1,17 @@
 <html>
 <head>
   <title>motionSec Viewer</title>
-  <link type="text/css" rel="stylesheet" href="static/css/lightgallery.min.css" />
-  <script type="text/javascript" src="static/js/jquery.min.js"></script>
-  <script type="text/javascript" src="static/js/lightgallery-all.min.js"></script>
-  <script type="text/javascript" src="static/js/main.js"></script>
+  <link type="text/css" rel="stylesheet" href="/static/css/lightgallery.min.css" />
+  <script type="text/javascript" src="/static/js/jquery.min.js"></script>
+  <script type="text/javascript" src="/static/js/lightgallery-all.min.js"></script>
+  <script type="text/javascript" src="/static/js/main.js"></script>
 </head>
 <body>
   <h1>View 1</h1>
   <div class="gallery">
     {% for filename in imglist %}
-      <a href="static/caps/img/{{filename}}">
-        <img src="static/caps/img/{{filename}}" width=360 height=204>
+      <a href="/static/caps/img/{{filename}}">
+        <img src="/static/caps/img/{{filename}}" width=360 height=204>
       </a>
     {% endfor %}
   </div>

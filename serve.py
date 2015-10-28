@@ -29,11 +29,14 @@ def isVid(filename):
     except:
         return False;
 @app.route("/")
-def getImg():
+@app.route("/<int:preload>")
+@app.route("/<int:preload>/<int:pos>")
+@app.route("/<int:preload>/<int:pos>/<int:interval>")
+def getImg(preload=0, pos=0, interval=5):
     filelist = os.listdir("static/caps/");
+    filelist = sorted(filelist, reverse=True)[pos:pos+interval]
     print(filelist);
     filelist = [{"filename": filename, "isimg": isImg(filename), "isvid": isVid(filename)} for filename in filelist if (isImg(filename) or isVid(filename))]
-    sorted(filelist)
     print(filelist);
     return render_template("imgvid.html", filelist=filelist);
 if __name__ == "__main__":
