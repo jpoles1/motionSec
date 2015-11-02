@@ -1,0 +1,17 @@
+<div class="mediagroup" id="{{groupid}}">
+  {% for filedat in filelist %}
+    <div class="mediacont">
+      <h3>{{filedat.filename}}</h3>
+      <a href="/static/caps/{{filedat.filename}}" target="_blank">
+      {% if filedat.isimg == True %}
+        <img src="/static/caps/{{filedat.filename}}" width=360 height=204>
+      {% elif filedat.isvid == True %}
+      <video class="lg-video-object lg-html5 video-js vjs-default-skin" controls preload="metadata" width=360 height=204>
+          <source src="/static/caps/{{filedat.filename}}" type="video/mp4">
+           Your browser does not support HTML5 video.
+      </video>
+      {% endif %}
+      </a>
+    </div>
+  {% endfor %}
+</div>

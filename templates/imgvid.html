@@ -1,28 +1,31 @@
 <html>
 <head>
   <title>motionSec Viewer</title>
-  <link type="text/css" rel="stylesheet" href="/static/css/lightgallery.min.css" />
+  <link type="text/css" rel="stylesheet" href="/static/css/main.css" />
   <script type="text/javascript" src="/static/js/jquery.min.js"></script>
   <script type="text/javascript" src="/static/js/main.js"></script>
 </head>
 <body style="padding: 20px;">
-  <div id="leftarrow" style="height: 80px; position: fixed; left: 10px; width: 40px; top: 40%;background-image: url(/static/img/chevron-left.png); background-repeat: no-repeat;background-size: contain;"></div>
-  <div id="rightarrow" style="height: 80px; position: fixed; right: 10px; width: 40px; top: 40%;background-image: url(/static/img/chevron-right.png); background-repeat: no-repeat;background-size: contain;"></div>
-  <div class="gallery" style="display: flex; flex-wrap: wrap; justify-content: space-around; padding: 50px;">
-    {% for filedat in filelist %}
-      <div class="mediacont">
-        <h3>{{filedat.filename}}</h3>
-        <a href="/static/caps/{{filedat.filename}}">
-        {% if filedat.isimg == True %}
-          <img src="/static/caps/{{filedat.filename}}" width=360 height=204>
-        {% elif filedat.isvid == True %}
-        <video class="lg-video-object lg-html5 video-js vjs-default-skin" controls preload="metadata" width=360 height=204>
-            <source src="/static/caps/{{filedat.filename}}" type="video/mp4">
-             Your browser does not support HTML5 video.
-        </video>
-        {% endif %}
-        </a>
-      </div>
-    {% endfor %}
+  <div id="status" data-stride="{{stride}}" data-groupid="{{groupid}}" data-pos="{{pos}}"></div>
+  <a href="#" id="leftarrow"  style="height: 80px; position: fixed; left: 10px; width: 40px; top: 40%;background-image: url(/static/img/chevron-left.png); background-repeat: no-repeat;background-size: contain;"></a>
+  <a href="#" id="rightarrow" style="height: 80px; position: fixed; right: 10px; width: 40px; top: 40%;background-image: url(/static/img/chevron-right.png); background-repeat: no-repeat;background-size: contain;"></a>
+  <div id="gallery">
+    <div class="mediagroup" id="0">
+      {% for filedat in filelist %}
+        <div class="mediacont">
+          <h3>{{filedat.filename}}</h3>
+          <a href="/static/caps/{{filedat.filename}}" target="_blank">
+          {% if filedat.isimg == True %}
+            <img src="/static/caps/{{filedat.filename}}" width=360 height=204>
+          {% elif filedat.isvid == True %}
+          <video class="lg-video-object lg-html5 video-js vjs-default-skin" controls preload="metadata" width=360 height=204>
+              <source src="/static/caps/{{filedat.filename}}" type="video/mp4">
+               Your browser does not support HTML5 video.
+          </video>
+          {% endif %}
+          </a>
+        </div>
+      {% endfor %}
+    </div>
   </div>
 </body>
