@@ -5,9 +5,10 @@
   <script type="text/javascript" src="/static/js/jquery.min.js"></script>
   <script type="text/javascript" src="/static/js/main.js"></script>
 </head>
-<body>
-  <h1>View 1</h1>
-  <div class="gallery">
+<body style="padding: 20px;">
+  <div id="leftarrow" style="height: 80px; position: fixed; left: 10px; width: 40px; top: 40%;background-image: url(/static/img/chevron-left.png); background-repeat: no-repeat;background-size: contain;"></div>
+  <div id="rightarrow" style="height: 80px; position: fixed; right: 10px; width: 40px; top: 40%;background-image: url(/static/img/chevron-right.png); background-repeat: no-repeat;background-size: contain;"></div>
+  <div class="gallery" style="display: flex; flex-wrap: wrap; justify-content: space-around; padding: 50px;">
     {% for filedat in filelist %}
       <div class="mediacont">
         <h3>{{filedat.filename}}</h3>
