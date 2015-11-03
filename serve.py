@@ -41,6 +41,6 @@ def getGallery(pos=0, stride=20):
     return render_template("imgvid.html", groupid=0, filelist=getFileList(pos,stride), pos=pos, stride=stride);
 @app.route("/ajax/<string:groupid>/<string:pos>/<string:stride>")
 def getMediaGroup(groupid, pos, stride):
-    return render_template("mediagroup.html", groupid=groupid, filelist=getFileList(int(pos),int(stride)));
+    return render_template("mediagroup.html", groupid=groupid, filelist=getFileList(int(pos),int(stride)), pos=int(pos), stride=int(stride));
 if __name__ == "__main__":
     app.run(debug=True, host='0.0.0.0');
